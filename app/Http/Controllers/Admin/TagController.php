@@ -40,7 +40,7 @@ class TagController extends Controller
         Tag::create($data);
 
         return redirect()
-            ->route('tags.index')
+            ->route('admin.tags.index')
             ->with('success', 'Tag created successfully.');
     }
 

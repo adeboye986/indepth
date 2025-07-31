@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>YOC - Admin Dashboard Template</title>
+  <title>Indepth - Admin Dashboard</title>
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('blogasset/blog-asset/css/app.min.css') }}">
   <link rel="stylesheet" href="{{ asset('blogasset/blog-asset/bundles/summernote/summernote-bs4.css') }}">
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{ asset('blogasset/blog-asset/css/components.css') }}">
   <!-- Custom style CSS -->
   <link rel="stylesheet" href="{{ asset('blogasset/blog-asset/css/custom.css') }}">
-  <link rel='shortcut icon' type='image/x-icon' href='{{ asset('assets/img/favicon.png') }}' />
+  <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/favicon.png') }}" />
 </head>
 
         <main>

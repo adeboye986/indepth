@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>YOC - Admin Dashboard</title>
+  <title>Indepth - Admin Dashboard</title>
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('blogasset/blog-asset/css/app.min.css') }}">
   <link rel="stylesheet" href="{{ asset('blogasset/blog-asset/bundles/summernote/summernote-bs4.css') }}">
@@ -153,7 +153,7 @@
                   </span>
                 </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-info text-white"> <i class="fas
 												fa-bell"></i>
-                  </span> <span class="dropdown-item-desc"> Welcome to YOC
+                  </span> <span class="dropdown-item-desc"> Welcome to Indepth
                     template! <span class="time">Yesterday</span>
                   </span>
                 </a>
@@ -178,14 +178,14 @@
               @auth
               <div class="dropdown-divider"></div>
               <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-         class="text-gold-300 hover:text-gold-100 underline" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+                class="text-gold-300 hover:text-gold-100 underline" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
                 Logout
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-        @csrf
+             @csrf
             </form>
           </div>
-        @endauth
+             @endauth
             </div>
           </li>
         </ul>
@@ -193,8 +193,8 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html"> <img alt="image" src="{{ asset('assets/img/logoo.png') }}" class="header-logo" /> <span
-                class="logo-name">YOC</span>
+            <a href="/"> <img alt="image" src="{{ asset('assets/img/indepth.png') }}" class="header-logo" /> <span
+                class="logo-name">Indepth</span>
             </a>
           </div>
           <ul class="sidebar-menu">
@@ -286,7 +286,7 @@
               </ul>
             </li>
             <li><a class="nav-link" href="blank.html"><i data-feather="file"></i><span>Blank Page</span></a></li>
-            <li class="menu-header">YOC</li>
+            <li class="menu-header">Indepth</li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="layout"></i><span>Forms</span></a>
               <ul class="dropdown-menu">
