@@ -13,6 +13,6 @@ class HomeController extends Controller
         $posts = Post::where('status', 'published')->paginate(10);
 
         // Pass to the 'home' view
-        return view('index', compact('posts'));
+        return view('index', compact('posts, categories'));
     }
 }

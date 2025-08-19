@@ -32,7 +32,6 @@ Blog Area
                             <div class="blog-meta">
                                 <a class="author" href=""><i class="fa-light fa-user"></i>by {{ $post->author->name ?? 'Unknown' }}</a>
                                 <a href=""><i class="fa-regular fa-calendar"></i>{{ $post->created_at->format('F j, Y \a\t g:ia') }}</a>
-                                <a href=""><img src="assets/img/icon/map.svg" alt="">Sea Beach</a>
                             </div>
                             <h2 class="blog-title">
                                 <a href="">{{ $post->title }}</a>
@@ -113,15 +112,63 @@ Blog Area
                             <p>No posts available.</p>
                             @endforelse
 
-                    <div class="th-pagination mt-60 ">
-                        <ul>
-                            <li><a class="active" href="blog.html">1</a></li>
-                            <li><a href="blog.html">2</a></li>
-                            <li><a href="blog.html">3</a></li>
-                            <li><a href="blog.html">4</a></li>
-                            <li><a class="next-page" href="blog.html"><i class="fa-sharp fa-light fa-arrow-right"></i></a></li>
-                        </ul>
-                    </div>
+                    <div class="th-pagination mt-60">
+                <ul>
+                    {{-- Previous Page --}}
+                    @if ($posts->onFirstPage())
+                        <li class="disabled"><span>&laquo;</span></li>
+                    @else
+                        <li>
+                            <a href="{{ $posts->appends(request()->query())->previousPageUrl() }}">&laquo;</a>
+                        </li>
+                    @endif
+
+                    {{-- First Page --}}
+                    @if ($posts->currentPage() > 3)
+                        <li>
+                            <a href="{{ $posts->appends(request()->query())->url(1) }}">1</a>
+                        </li>
+                        @if ($posts->currentPage() > 4)
+                            <li><span>...</span></li>
+                        @endif
+                    @endif
+
+                    {{-- Page Numbers --}}
+                    @php $range = 2; @endphp
+                    @for ($i = max(1, $posts->currentPage() - $range); $i <= min($posts->lastPage(), $posts->currentPage() + $range); $i++)
+                        <li>
+                            <a href="{{ $posts->appends(request()->query())->url($i) }}" 
+                            class="{{ $i == $posts->currentPage() ? 'active' : '' }}">
+                                {{ $i }}
+                            </a>
+                        </li>
+                    @endfor
+
+                    {{-- Last Page --}}
+                    @if ($posts->currentPage() < $posts->lastPage() - 2)
+                        @if ($posts->currentPage() < $posts->lastPage() - 3)
+                            <li><span>...</span></li>
+                        @endif
+                        <li>
+                            <a href="{{ $posts->appends(request()->query())->url($posts->lastPage()) }}">
+                                {{ $posts->lastPage() }}
+                            </a>
+                        </li>
+                    @endif
+
+                    {{-- Next Page --}}
+                    @if ($posts->hasMorePages())
+                        <li>
+                            <a class="next-page" href="{{ $posts->appends(request()->query())->nextPageUrl() }}">
+                                <i class="fa-sharp fa-light fa-arrow-right"></i>
+                            </a>
+                        </li>
+                    @else
+                        <li class="disabled"><span>&raquo;</span></li>
+                    @endif
+                </ul>
+            </div>
+
                 </div>
                 <div class="col-xxl-4 col-lg-5">
                     <aside class="sidebar-area">
@@ -131,54 +178,22 @@ Blog Area
                                 <button type="submit"><i class="far fa-search"></i></button>
                             </form>
                         </div>
-                        <div class="widget widget_categories  ">
-                            <h3 class="widget_title">Categories</h3>
-                            @foreach($post->categories as $category)
-                            <ul>
-                                <li>
-                                    <a href="">{{ $category->name }}</a>
-                                    <span><i class="fa-regular fa-arrow-up-right"></i></span>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
                         <div class="widget  ">
                             <h3 class="widget_title">Recent Posts</h3>
                             <div class="recent-post-wrap">
+                                @foreach($recentPosts as $recent)
                                 <div class="recent-post">
                                     <div class="media-img">
-                                        <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-1.jpg" alt="Blog Image"></a>
+                                        <a href="blog-details.html"><img src="{{ asset('storage/'.$recent->image) }}" alt="Blog Image"></a>
                                     </div>
                                     <div class="media-body">
                                         <div class="recent-post-meta">
-                                            <a href="blog.html"><i class="fa-solid fa-calendar-days"></i>22 Sep, 2025</a>
+                                            <a href=""><i class="fa-solid fa-calendar-days"></i>{{ $recent->created_at->format('M d, Y') }}</a>
                                         </div>
-                                        <h4 class="post-title"><a class="text-inherit" href="blog-details.html">5 Common IT Issues and How to Solve Them</a></h4>
+                                        <h4 class="post-title"><a class="text-inherit" href="blog-details.html">{{ Str::words(strip_tags($recent->content), 15, '...') }}</a></h4>
                                     </div>
                                 </div>
-                                <div class="recent-post">
-                                    <div class="media-img">
-                                        <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-2.jpg" alt="Blog Image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="recent-post-meta">
-                                            <a href="blog.html"><i class="fa-solid fa-calendar-days"></i>25 Sep, 2025</a>
-                                        </div>
-                                        <h4 class="post-title"><a class="text-inherit" href="blog-details.html">Hybrid Cloud Solutions: The Best of Both Worlds</a></h4>
-
-                                    </div>
-                                </div>
-                                <div class="recent-post">
-                                    <div class="media-img">
-                                        <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-3.jpg" alt="Blog Image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="recent-post-meta">
-                                            <a href="blog.html"><i class="fa-solid fa-calendar-days"></i>27 Sep, 2025</a>
-                                        </div>
-                                        <h4 class="post-title"><a class="text-inherit" href="blog-details.html">Top 10 IT Solutions Every Business.</a></h4>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="widget widget_tag_cloud  ">

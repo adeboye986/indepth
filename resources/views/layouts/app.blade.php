@@ -240,7 +240,10 @@
                                         <a class="active" href="/">Home</a>
                                     </li>
                                     <li class="">
-                                        <a href="#">About Us</a>
+                                        <a href="/about">About Us</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="/blog">Blog</a>
                                     </li>
                                     </ul>
                             </nav>
@@ -260,6 +263,9 @@
                                     </li>
                                     <li class="">
                                         <a href="contact">Contact</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#">Team</a>
                                     </li>
                             </nav>
                         </div>
